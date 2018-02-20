@@ -51,11 +51,25 @@ class HangmanViewControllerTestSuite: BKTestSuite, BKAutogradable {
             BKSendAction(to: characterButtons[letter.first!]!)
         default: ()
         }
-        BKSendAction(to: guessButton)
+        
+        BKRun(for: 0.5)
+        guessButton.tap()
     }
     
     func testQ0Existence() {
-        hangmanViewController = BKAssertStoryboardViewController()
+        let keyWindow: UIWindow = BKAssertNotNil(UIApplication.shared.keyWindow)
+        
+        let rootViewController: UIViewController = BKAssertNotNil(keyWindow.rootViewController)
+        
+        if let viewController = rootViewController as? HangmanViewController {
+            hangmanViewController = viewController
+        } else {
+            let startButton = BKAssertButton(withLabelContaining: [["start"], ["go"], ["play"]], inSubviewsOf: rootViewController.view)
+            startButton.tap()
+            BKRun(for: 1)
+            hangmanViewController = BKAssertNotNil(rootViewController.presentedViewController)
+        }
+        
         BKLoadView(in: hangmanViewController)
     }
     
@@ -225,7 +239,7 @@ class HangmanViewControllerTestSuite: BKTestSuite, BKAutogradable {
     }
     
     func testQ11NewGameButton() {
-        newGameButton = BKAssertButton(withLabelContaining: [["new", "game"]], inSubviewsOf: hangmanViewController.view)
+        newGameButton = BKAssertButton(withLabelContaining: [["new", "game"], ["start", "over"], ["restart"]], inSubviewsOf: hangmanViewController.view)
     }
     
     func testQ12NewGameButtonResetsGame() {
