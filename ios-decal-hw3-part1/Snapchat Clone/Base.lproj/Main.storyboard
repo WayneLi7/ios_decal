@@ -83,11 +83,19 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQr-al-JO5">
+                                                    <rect key="frame" x="38" y="83" width="285" height="57"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="feedName" destination="UY9-wq-D8W" id="kTa-6W-bPD"/>
                                             <outlet property="readImg" destination="ebU-Wr-JGs" id="JEV-29-Km5"/>
+                                            <outlet property="readTime" destination="HQr-al-JO5" id="HpD-Sh-cux"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

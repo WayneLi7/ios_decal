@@ -25,6 +25,7 @@ class ImageSenderController: UIViewController, UITableViewDelegate, UITableViewD
         if let img = imageToSend {
             if let index = selectedIndexPath {
                 threads[threadNames[index.row]]?.append(img)
+                threadsDate[threadNames[index.row]] = Date()
             }
         }
     }

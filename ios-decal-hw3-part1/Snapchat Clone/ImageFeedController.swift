@@ -11,6 +11,7 @@ import UIKit
 class FeedCell : UITableViewCell {
     @IBOutlet weak var feedName: UILabel!
     @IBOutlet weak var readImg: UIImageView!
+    @IBOutlet weak var readTime: UILabel!
     var read : Bool = true
 }
 
@@ -36,10 +37,18 @@ class ImageFeedController: UIViewController, UITableViewDataSource, UITableViewD
             let threadName = threadNames[indexPath.row]
             if threads[threadName]!.count > 0 {
                 cell.readImg.image = #imageLiteral(resourceName: "unread")
+                let currentTime = Date()
+                let t = CFDateGetTimeIntervalSinceDate(currentTime as CFDate, threadsDate[threadName]! as CFDate)
+                let new_t = Int(ceil((t/60)))
+                if new_t == 1 {
+                    cell.readTime.text = String(new_t) + " minute ago"
+                } else {
+                    cell.readTime.text = String(new_t) + " minutes ago"
+                }
+                
             } else {
                 cell.readImg.image = #imageLiteral(resourceName: "read")
             }
-            
             cell.feedName.text = threadName
             return cell
         } else {
