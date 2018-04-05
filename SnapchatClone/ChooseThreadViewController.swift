@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ChooseThreadViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -36,8 +37,11 @@ class ChooseThreadViewController: UIViewController, UITableViewDelegate, UITable
             if let imageToPost = chosenImage {
                 // TODO:
                 // Uncomment the line below.
-//                addPost(postImage: imageToPost, thread: threadName, username: (Auth.auth().currentUser?.displayName)!)
-                performSegue(withIdentifier: "unwindToImagePicker", sender: nil)
+                if let un = Auth.auth().currentUser{
+                    addPost(postImage: imageToPost, thread: threadName, username: un.displayName!)
+                    performSegue(withIdentifier: "unwindToImagePicker", sender: nil)
+                }
+                
             }
         } else {
             let alert = UIAlertController(title: "No thread selected", message: "You must select a thread to post your snap to.", preferredStyle: UIAlertControllerStyle.alert)
